@@ -24,4 +24,12 @@ public class Metricas {
         }
         return desvioPadrao;
     }
+
+    public static double IntervaloConfiancaInferior(List<Double> lista) {
+        return Media(lista) - 1.96 * Math.sqrt(DesvioPadrao(lista)) / Math.sqrt(lista.size());
+    }
+
+    public static double IntervaloConfiancaSuperior(List<Double> lista) {
+        return Media(lista) + 1.96 * Math.sqrt(DesvioPadrao(lista))/Math.sqrt(lista.size());
+    }
 }
