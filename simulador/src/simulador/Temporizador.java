@@ -17,15 +17,15 @@ public class Temporizador {
         this.agenda = new AgendaTaferas();
     }
 
-    public Double getTempoAtual() {
+    private Double getTempoAtual() {
         return tempoAtual;
     }
 
-    public Double getTempoFinal() {
+    private Double getTempoFinal() {
         return tempoFinal;
     }
 
-    public AgendaTaferas getAgenda() {
+    private AgendaTaferas getAgenda() {
         return agenda;
     }
 
@@ -37,6 +37,9 @@ public class Temporizador {
     public void play(){
         while(tempoAtual < tempoFinal){
             Tarefa proximaTarefa = agenda.proximaTarefa();
+            if(proximaTarefa == null){
+                break;
+            }
             tempoAtual = proximaTarefa.getHorario();
             proximaTarefa.executar();
         }

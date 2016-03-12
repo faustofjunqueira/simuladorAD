@@ -22,8 +22,12 @@ public class AgendaTaferas {
     }
 
     public Tarefa proximaTarefa(){
-        Tarefa tarefa = getTarefas().first();
-        getTarefas().remove(tarefa);
-        return tarefa;
+        if(getTarefas().size() > 0){
+            Tarefa tarefa = getTarefas().first();
+            getTarefas().remove(tarefa);
+            return tarefa;
+        }else{
+            return null;
+        }
     }
 }
