@@ -11,9 +11,11 @@ public class Simulador {
     private Boolean servidorOcupado = false;
     private Temporizador temporizador;
     private Fila fila;
+    private MetricaDeInteresse metricaDeInteresse;
 
     public Simulador(Double tempoFinal, Classe classeObrigatoria, Classe ...classes) {
         temporizador = new Temporizador(tempoFinal);
+        metricaDeInteresse = new MetricaDeInteresse();
 
         List<Classe> listaClasse = new ArrayList<>(classes.length + 1);
         listaClasse.add(classeObrigatoria);
@@ -39,17 +41,22 @@ public class Simulador {
         return fila;
     }
 
+    public MetricaDeInteresse getMetricaDeInteresse() {
+        return metricaDeInteresse;
+    }
+
     private void prepararSimulacao(List<Classe> classes){
         for(Classe c : classes){
             temporizador.registrarTarefaPorAtraso(c.getRandom(), (tempo) -> InsereClienteNaFila(tempo, c));
         }
     }
 
-    private void LiberaServidorEBuscaNovoCliente(Double horarioDeTermino, Cliente cliente){
+    private void LiberaServidorEBuscaNovoCliente(Double horarioDeEntradaNoServidor, Cliente cliente){
         setServidorOcupado(false);
-        cliente.setTempoSaida(horarioDeTermino);
+        metricaDeInteresse.adicionaClienteProcessado(cliente);
         if(fila.tamanho() > 0){
             Cliente novoCliente = fila.remover();
+            novoCliente.setTempoSaida(horarioDeEntradaNoServidor);
             ProcessarCliente(novoCliente);
         }
     }
@@ -62,6 +69,7 @@ public class Simulador {
     private void InsereClienteNaFila(Double horarioDeEntrada, Classe classe){
         Cliente cliente = new Cliente(classe, horarioDeEntrada);
         if(!servidorOcupado){
+            cliente.setTempoSaida(horarioDeEntrada);
             ProcessarCliente(cliente);
         }else{
             fila.adicionar(cliente);
@@ -70,13 +78,15 @@ public class Simulador {
         temporizador.registrarTarefaPorAtraso(Random.Exponencial(classe.getLambda()), (tempo) -> InsereClienteNaFila(tempo, classe));
     }
 
-    public void iniciarSimulacao(){
+    public MetricaDeInteresse iniciarSimulacao(){
         temporizador.play();
+        return getMetricaDeInteresse();
     }
 
-    public  void continuarSimulação(Double tempoFinal){
+    public MetricaDeInteresse continuarSimulação(Double tempoFinal){
+        getMetricaDeInteresse().setMediaCalculada(null);
         temporizador.setTempoFinal(tempoFinal);
-        temporizador.play();
+        return iniciarSimulacao();
     }
 
 }
