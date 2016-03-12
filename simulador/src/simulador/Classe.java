@@ -29,5 +29,9 @@ public class Classe {
     public double getRandom() {
         return funcao.getAsDouble();
     }
+
+    public void setLambda(double lambda) {
+        this.lambda = lambda;
+    }
 }
 //temposaida, tempoentrada, delta

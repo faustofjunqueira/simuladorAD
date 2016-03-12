@@ -47,7 +47,7 @@ public class Simulador {
 
     private void prepararSimulacao(List<Classe> classes){
         for(Classe c : classes){
-            temporizador.registrarTarefaPorAtraso(c.getRandom(), (tempo) -> InsereClienteNaFila(tempo, c));
+            temporizador.registrarTarefaPorAtraso(Random.Exponencial(c.getLambda()), (tempo) -> InsereClienteNaFila(tempo, c));
         }
     }
 
