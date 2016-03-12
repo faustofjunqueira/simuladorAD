@@ -12,5 +12,18 @@ public class AgendaTaferas {
     public AgendaTaferas() {
         this.tarefas = new TreeSet<>(new TarefaComparator());
     }
-    
+
+    public SortedSet<Tarefa> getTarefas() {
+        return tarefas;
+    }
+
+    public void adicionarTarefa(Tarefa tarefa){
+        getTarefas().add(tarefa);
+    }
+
+    public Tarefa proximaTarefa(){
+        Tarefa tarefa = getTarefas().first();
+        getTarefas().remove(tarefa);
+        return tarefa;
+    }
 }
