@@ -7,9 +7,8 @@ import java.util.List;
  */
 public class Metricas {
 
-    public static double Little(double lambda, double mi) {
-        double rho = lambda/mi;
-        return rho/(1-rho);
+    public static double Little(double lambda, double mediaTempo) {
+        return lambda * mediaTempo;
     }
 
     public static double Media(List<Double> lista) {
