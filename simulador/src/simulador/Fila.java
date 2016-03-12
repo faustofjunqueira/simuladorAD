@@ -6,10 +6,11 @@ import java.util.List;
 /**
  * Created by fausto on 3/11/16.
  */
-public class Fila<Cliente,Classe> {
+public class Fila{
     private List<List<Cliente>> filas;
 
-    public Fila(Classe classeObrigatoria,Classe ...classes) {
+    public Fila(List<Classe> classes) {
+        filas = new ArrayList<>(classes.size());
         for (Classe classe : classes) {
             filas.add(new ArrayList<>(10));
         }
@@ -21,13 +22,18 @@ public class Fila<Cliente,Classe> {
 
     public void adicionar(Cliente cliente){
         //TODO: fazer o preemptivo
-        //TODO: quando tiver a prioridade, usar aqui;
-        //getFilas().get(cliente.prioridade).add(cliente);
+        getFilas().get(cliente.getClasse().getPrioridade()).add(cliente);
     }
 
-    public void remover(Cliente cliente){
-        //TODO: quando tiver a prioridade, usar aqui
-        //getFilas().get(cliente.prioridade).remove(cliente);
+    public Cliente remover(){
+        for(List<Cliente> lista : getFilas()){
+          if(lista.size() > 0){
+            Cliente cliente = lista.get(0);
+            lista.remove(cliente);
+            return cliente;
+          }
+        }
+        return null;
     }
 
     public Integer tamanho(){

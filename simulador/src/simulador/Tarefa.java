@@ -19,8 +19,12 @@ public class Tarefa {
         return horario;
     }
 
-    public void executar(){
-        this.funcao.accept(this.horario);
+    public void setHorario(Double horario) {
+        this.horario = horario;
+    }
+
+    public void executar(Double hora){
+        this.funcao.accept(hora);
     }
 
 }

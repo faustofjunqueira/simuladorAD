@@ -8,7 +8,7 @@ public class Cliente {
     private double tempoEntrada;
     private double tempoSaida;
 
-    public Cliente(Classe classe, double tempoEntrada, double tempoSaida) {
+    public Cliente(Classe classe, double tempoEntrada) {
         this.classe = classe;
         this.tempoEntrada = tempoEntrada;
         this.tempoSaida = tempoSaida;
@@ -26,4 +26,11 @@ public class Cliente {
         return this.tempoSaida;
     }
 
+    public void setTempoSaida(double tempoSaida) {
+        this.tempoSaida = tempoSaida;
+    }
+
+    public double getDeltaTempo(){
+        return tempoSaida - tempoEntrada;
+    }
 }
