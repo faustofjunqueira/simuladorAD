@@ -12,6 +12,10 @@ public class Simulador {
     protected Temporizador temporizador;
     protected Fila fila;
     protected MetricaDeInteresse metricaDeInteresse;
+    protected Double tempoVazio = 0.;
+    protected Double tempoVazioTotal = 0.;
+    protected Integer nClientesChegadas = 0;
+    protected Integer nClientesComServidorVazio = 0;
 
     public Simulador(Double tempoFinal, Classe classeObrigatoria, Classe ...classes) {
         temporizador = new Temporizador(tempoFinal);
@@ -47,12 +51,13 @@ public class Simulador {
 
     protected void prepararSimulacao(List<Classe> classes){
         for(Classe c : classes){
-            temporizador.registrarTarefaPorAtraso(Random.Exponencial(c.getLambda()), (tempo) -> InsereClienteNaFila(tempo, c));
+            temporizador.registrarTarefaPorAtraso(getClasseRandomLambda(c), (tempo) -> InsereClienteNaFila(tempo, c));
         }
     }
 
     protected void LiberaServidorEBuscaNovoCliente(Double horarioDeEntradaNoServidor, Cliente cliente){
         setServidorOcupado(false);
+        setTempoVazio(temporizador.getTempoAtual());
         metricaDeInteresse.adicionaClienteProcessado(cliente);
         if(fila.tamanho() > 0){
             Cliente novoCliente = fila.remover();
@@ -64,6 +69,7 @@ public class Simulador {
     protected void ProcessarCliente(Cliente cliente){
         // com preempçao: tira o cliente, salva o tempo que ainda resta e coloca o novo no servidor
         setServidorOcupado(true);
+        setTempoVazioTotal(tempoVazioTotal + temporizador.getTempoAtual() - tempoVazio);
         temporizador.registrarTarefaPorAtraso(cliente.getClasse().getRandom(), (tempo) -> LiberaServidorEBuscaNovoCliente(tempo, cliente));
     }
 
@@ -72,16 +78,19 @@ public class Simulador {
         // Com preempção: coloca direto no servidor
         if(!servidorOcupado){
             cliente.setTempoSaida(horarioDeEntrada);
+            metricaDeInteresse.setFracaoDeChegadasServidorVazio(++nClientesComServidorVazio/(double)++nClientesChegadas);
             ProcessarCliente(cliente);
         }else{
+            metricaDeInteresse.setFracaoDeChegadasServidorVazio(nClientesComServidorVazio/(double)++nClientesChegadas);
             fila.adicionar(cliente,false);
         }
         // Usa-se Random.Exponecial Sempre pois a entrada eh sempre Memoryless
-        temporizador.registrarTarefaPorAtraso(Random.Exponencial(classe.getLambda()), (tempo) -> InsereClienteNaFila(tempo, classe));
+        temporizador.registrarTarefaPorAtraso(getClasseRandomLambda(classe), (tempo) -> InsereClienteNaFila(tempo, classe));
     }
 
     public MetricaDeInteresse iniciarSimulacao(){
         temporizador.play();
+        getMetricaDeInteresse().setFracaoDeTempoServidorVazio(this.tempoVazioTotal / temporizador.getTempoFinal());
         return getMetricaDeInteresse();
     }
 
@@ -91,4 +100,15 @@ public class Simulador {
         return iniciarSimulacao();
     }
 
+    public void setTempoVazioTotal(Double tempoVazioTotal) {
+        this.tempoVazioTotal = tempoVazioTotal;
+    }
+
+    public void setTempoVazio(Double tempoVazio) {
+        this.tempoVazio = tempoVazio;
+    }
+
+    protected Double getClasseRandomLambda(Classe classe) {
+        return Random.Exponencial(classe.getLambda());
+    }
 }

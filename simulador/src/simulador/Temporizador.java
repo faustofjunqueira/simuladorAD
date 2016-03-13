@@ -25,7 +25,7 @@ public class Temporizador {
         return tempoAtual;
     }
 
-    private Double getTempoFinal() {
+    public Double getTempoFinal() {
         return tempoFinal;
     }
 
@@ -53,5 +53,6 @@ public class Temporizador {
             proximaTarefa.executar(tempoAtual);
         }
     }
+
 
 }

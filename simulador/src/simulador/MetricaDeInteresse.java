@@ -1,8 +1,6 @@
 package simulador;
 
-import javax.print.attribute.standard.Media;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +10,8 @@ import java.util.stream.Collectors;
 public class MetricaDeInteresse {
     private List<Cliente> clientesProcessados;
     private Double mediaCalculada = null;
+    private Double fracaoDeTempoServidorVazio = 0.;
+    private Double fracaoDeChegadasServidorVazio = 0.;
 
     public MetricaDeInteresse() {
         clientesProcessados = new ArrayList<>();
@@ -44,5 +44,22 @@ public class MetricaDeInteresse {
             Integer i = 0;
         }
     }
+
+    public Double getFracaoDeTempoServidorVazio() {
+        return this.fracaoDeTempoServidorVazio;
+    }
+
+    public void setFracaoDeTempoServidorVazio(Double fracaoDeTempoServidorVazio) {
+        this.fracaoDeTempoServidorVazio = fracaoDeTempoServidorVazio;
+    }
+
+    public Double getFracaoDeChegadasServidorVazio() {
+        return fracaoDeChegadasServidorVazio;
+    }
+
+    public void setFracaoDeChegadasServidorVazio(Double fracaoDeChegadasServidorVazio) {
+        this.fracaoDeChegadasServidorVazio = fracaoDeChegadasServidorVazio;
+    }
+
 
 }
