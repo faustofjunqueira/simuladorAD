@@ -74,7 +74,7 @@ public class Simulador {
             cliente.setTempoSaida(horarioDeEntrada);
             ProcessarCliente(cliente);
         }else{
-            fila.adicionar(cliente);
+            fila.adicionar(cliente,false);
         }
         // Usa-se Random.Exponecial Sempre pois a entrada eh sempre Memoryless
         temporizador.registrarTarefaPorAtraso(Random.Exponencial(classe.getLambda()), (tempo) -> InsereClienteNaFila(tempo, classe));

@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="edb017f5-dde4-4e46-815c-3a1bddf2d55d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simulador/src/simulador/ClientePreemptivo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simulador/src/simulador/Intervalo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simulador/src/simulador/SimuladorPreemptivo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulador/src/simulador/Fila.java" afterPath="$PROJECT_DIR$/simulador/src/simulador/Fila.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulador/src/simulador/Simulador.java" afterPath="$PROJECT_DIR$/simulador/src/simulador/Simulador.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulador/src/simulador/Temporizador.java" afterPath="$PROJECT_DIR$/simulador/src/simulador/Temporizador.java" />
     </list>
     <ignored path="simulador.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Simulador.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Simulador.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/simulador/src/simulador/Simulador.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="61" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.4874372">
+              <caret line="76" column="40" selection-start-line="76" selection-start-column="40" selection-end-line="76" selection-end-column="40" />
               <folding>
                 <element signature="docComment;class#Simulador#0" expanded="false" />
                 <element signature="e#843#844#0" expanded="true" />
@@ -64,10 +59,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimuladorPreemptivo.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SimuladorPreemptivo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simulador/src/simulador/SimuladorPreemptivo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42211056">
+            <state vertical-scroll-proportion="0.0">
               <caret line="32" column="71" selection-start-line="32" selection-start-column="71" selection-end-line="32" selection-end-column="71" />
               <folding />
             </state>
@@ -124,13 +119,13 @@
         <option value="$PROJECT_DIR$/simulador/src/exercicio4/CenarioII.java" />
         <option value="$PROJECT_DIR$/simulador/src/exercicio4/CenarioIII.java" />
         <option value="$PROJECT_DIR$/simulador/src/exercicio4/CenarioI.java" />
-        <option value="$PROJECT_DIR$/simulador/src/simulador/Simulador.java" />
         <option value="$PROJECT_DIR$/simulador/src/simulador/Intervalo.java" />
         <option value="$PROJECT_DIR$/simulador/src/simulador/Cliente.java" />
         <option value="$PROJECT_DIR$/simulador/src/simulador/ClientePreemptivo.java" />
         <option value="$PROJECT_DIR$/simulador/src/simulador/Fila.java" />
         <option value="$PROJECT_DIR$/simulador/src/simulador/Temporizador.java" />
         <option value="$PROJECT_DIR$/simulador/src/simulador/SimuladorPreemptivo.java" />
+        <option value="$PROJECT_DIR$/simulador/src/simulador/Simulador.java" />
       </list>
     </option>
   </component>
@@ -787,7 +782,7 @@
       <workItem from="1457818081734" duration="7043000" />
       <workItem from="1457825567335" duration="13000" />
       <workItem from="1457825621117" duration="68000" />
-      <workItem from="1457825889320" duration="12803000" />
+      <workItem from="1457825889320" duration="13082000" />
     </task>
     <task id="LOCAL-00001" summary="Simulador funcionando sem colheita de metricas">
       <created>1457758523169</created>
@@ -819,11 +814,17 @@
       <option name="project" value="LOCAL" />
       <updated>1457842679040</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Feito mais coisa ainda">
+      <created>1457882091084</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1457882091084</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41061000" />
+    <option name="totallyTimeSpent" value="41340000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="733" extended-state="6" />
@@ -896,7 +897,8 @@
     <MESSAGE value="Simulador funcionando" />
     <MESSAGE value="Cenario I concluido" />
     <MESSAGE value="Muitas coisas feitas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Muitas coisas feitas" />
+    <MESSAGE value="Feito mais coisa ainda" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feito mais coisa ainda" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1351,28 +1353,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simulador/src/simulador/Simulador.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="61" selection-end-column="5" />
-          <folding>
-            <element signature="docComment;class#Simulador#0" expanded="false" />
-            <element signature="e#843#844#0" expanded="true" />
-            <element signature="e#897#898#0" expanded="true" />
-            <element signature="e#943#944#0" expanded="true" />
-            <element signature="e#981#982#0" expanded="true" />
-            <element signature="e#1029#1030#0" expanded="true" />
-            <element signature="e#1064#1065#0" expanded="true" />
-            <element signature="e#1096#1097#0" expanded="true" />
-            <element signature="e#1123#1124#0" expanded="true" />
-            <element signature="e#1180#1181#0" expanded="true" />
-            <element signature="e#1221#1222#0" expanded="true" />
-            <element signature="method#iniciarSimulacao#0;class#Simulador#0" expanded="false" />
-            <element signature="method#continuarSimulação#0;class#Simulador#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/simulador/src/simulador/ClientePreemptivo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5477387">
@@ -1414,9 +1394,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/simulador/src/simulador/SimuladorPreemptivo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42211056">
+        <state vertical-scroll-proportion="0.0">
           <caret line="32" column="71" selection-start-line="32" selection-start-column="71" selection-end-line="32" selection-end-column="71" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulador/src/simulador/Simulador.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4874372">
+          <caret line="76" column="40" selection-start-line="76" selection-start-column="40" selection-end-line="76" selection-end-column="40" />
+          <folding>
+            <element signature="docComment;class#Simulador#0" expanded="false" />
+            <element signature="e#843#844#0" expanded="true" />
+            <element signature="e#897#898#0" expanded="true" />
+            <element signature="e#943#944#0" expanded="true" />
+            <element signature="e#981#982#0" expanded="true" />
+            <element signature="e#1029#1030#0" expanded="true" />
+            <element signature="e#1064#1065#0" expanded="true" />
+            <element signature="e#1096#1097#0" expanded="true" />
+            <element signature="e#1123#1124#0" expanded="true" />
+            <element signature="e#1180#1181#0" expanded="true" />
+            <element signature="e#1221#1222#0" expanded="true" />
+            <element signature="method#iniciarSimulacao#0;class#Simulador#0" expanded="false" />
+            <element signature="method#continuarSimulação#0;class#Simulador#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
