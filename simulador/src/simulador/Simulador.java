@@ -8,10 +8,10 @@ import java.util.List;
  * Created by fausto on 3/12/16.
  */
 public class Simulador {
-    private Boolean servidorOcupado = false;
-    private Temporizador temporizador;
-    private Fila fila;
-    private MetricaDeInteresse metricaDeInteresse;
+    protected Boolean servidorOcupado = false;
+    protected Temporizador temporizador;
+    protected Fila fila;
+    protected MetricaDeInteresse metricaDeInteresse;
 
     public Simulador(Double tempoFinal, Classe classeObrigatoria, Classe ...classes) {
         temporizador = new Temporizador(tempoFinal);
@@ -25,19 +25,19 @@ public class Simulador {
         prepararSimulacao(listaClasse);
     }
 
-    private void setServidorOcupado(Boolean servidorOcupado) {
+    protected void setServidorOcupado(Boolean servidorOcupado) {
         this.servidorOcupado = servidorOcupado;
     }
 
-    private Boolean getServidorOcupado() {
+    protected Boolean getServidorOcupado() {
         return servidorOcupado;
     }
 
-    private Temporizador getTemporizador() {
+    protected Temporizador getTemporizador() {
         return temporizador;
     }
 
-    private Fila getFila() {
+    protected Fila getFila() {
         return fila;
     }
 
@@ -45,13 +45,13 @@ public class Simulador {
         return metricaDeInteresse;
     }
 
-    private void prepararSimulacao(List<Classe> classes){
+    protected void prepararSimulacao(List<Classe> classes){
         for(Classe c : classes){
             temporizador.registrarTarefaPorAtraso(Random.Exponencial(c.getLambda()), (tempo) -> InsereClienteNaFila(tempo, c));
         }
     }
 
-    private void LiberaServidorEBuscaNovoCliente(Double horarioDeEntradaNoServidor, Cliente cliente){
+    protected void LiberaServidorEBuscaNovoCliente(Double horarioDeEntradaNoServidor, Cliente cliente){
         setServidorOcupado(false);
         metricaDeInteresse.adicionaClienteProcessado(cliente);
         if(fila.tamanho() > 0){
@@ -61,13 +61,13 @@ public class Simulador {
         }
     }
 
-    private void ProcessarCliente(Cliente cliente){
+    protected void ProcessarCliente(Cliente cliente){
         // com preempçao: tira o cliente, salva o tempo que ainda resta e coloca o novo no servidor
         setServidorOcupado(true);
         temporizador.registrarTarefaPorAtraso(cliente.getClasse().getRandom(), (tempo) -> LiberaServidorEBuscaNovoCliente(tempo, cliente));
     }
 
-    private void InsereClienteNaFila(Double horarioDeEntrada, Classe classe){
+    protected void InsereClienteNaFila(Double horarioDeEntrada, Classe classe){
         Cliente cliente = new Cliente(classe, horarioDeEntrada);
         // Com preempção: coloca direto no servidor
         if(!servidorOcupado){

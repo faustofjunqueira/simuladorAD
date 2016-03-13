@@ -17,7 +17,7 @@ public class Temporizador {
         this.agenda = new AgendaTaferas();
     }
 
-    private Double getTempoAtual() {
+    public Double getTempoAtual() {
         return tempoAtual;
     }
 

@@ -20,9 +20,13 @@ public class Fila{
         return filas;
     }
 
-    public void adicionar(Cliente cliente){
+    public void adicionar(Cliente cliente, Boolean preemptivo){
         //TODO: fazer o preemptivo
-        getFilas().get(cliente.getClasse().getPrioridade()).add(cliente);
+        if(preemptivo){
+            getFilas().get(cliente.getClasse().getPrioridade()).add(0,cliente);
+        }else{
+            getFilas().get(cliente.getClasse().getPrioridade()).add(cliente);
+        }
     }
 
     public Cliente remover(){
