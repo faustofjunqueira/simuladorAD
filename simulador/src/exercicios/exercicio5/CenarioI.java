@@ -1,4 +1,4 @@
-package exercicio5;
+package exercicios.exercicio5;
 
 import simulador.*;
 

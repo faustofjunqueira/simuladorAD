@@ -21,12 +21,12 @@ public class Simulacao {
         }
     }
 
-    protected Simulador gerarSimulador(Double tempoFinal, Classe classe1, Classe classe2){
-        if(classe2 != null){
-            return new Simulador(tempoFinal, classe1, classe2);
-        }else{
-            return new Simulador(tempoFinal, classe1);
-        }
+    protected Simulador getSimulador(Double tempoFinal, Classe classe1) {
+        return new Simulador(tempoFinal, classe1);
+    }
+
+    protected Simulador getSimulador(Double tempoFinal, Classe classe1, Classe classe2) {
+        return new Simulador(tempoFinal, classe1, classe2);
     }
 
     public Double executarPessoasNaFila(Double lambda){
@@ -37,7 +37,7 @@ public class Simulacao {
         Double media;
         do{
             for(int i = 0; i < nLoops; i++){
-                Simulador simulador = gerarSimulador(tempoFinal,classe1,classe2);
+                Simulador simulador = getSimulador(tempoFinal,classe1,classe2);
                 MetricaDeInteresse metricaDeInteresse = simulador.iniciarSimulacao();
                 MediasPessoasNaFilaColhetadas.add( Metricas.Little(classe1.getLambda() + classe2.getLambda(), metricaDeInteresse.getMediaTempoDeEspera()));
             }
@@ -59,7 +59,7 @@ public class Simulacao {
         Double media;
         do{
             for(int i = 0; i < nLoops; i++){
-                Simulador simulador = gerarSimulador(tempoFinal, classe1, classe2);
+                Simulador simulador = getSimulador(tempoFinal, classe1, classe2);
                 MetricaDeInteresse metricaDeInteresse = simulador.iniciarSimulacao();
                 mediasTempoDePessoasNaFila.add(metricaDeInteresse.getMediaTempoDeEspera());
             }
@@ -81,7 +81,7 @@ public class Simulacao {
         Double media;
         do{
             for(int i = 0; i < nLoops; i++){
-                Simulador simulador = gerarSimulador(tempoFinal, classe1, classe2);
+                Simulador simulador = getSimulador(tempoFinal, classe1, classe2);
                 MetricaDeInteresse metricaDeInteresse = simulador.iniciarSimulacao();
                 mediasFracaoServidorVazio.add(metricaDeInteresse.getFracaoDeTempoServidorVazio());
             }
@@ -104,7 +104,7 @@ public class Simulacao {
         Double media;
         do{
             for(int i = 0; i < nLoops; i++){
-                Simulador simulador = gerarSimulador(tempoFinal, classe1, classe2);
+                Simulador simulador = getSimulador(tempoFinal, classe1, classe2);
                 MetricaDeInteresse metricaDeInteresse = simulador.iniciarSimulacao();
                 mediasFracaoChegadasServidorVazio.add(metricaDeInteresse.getFracaoDeChegadasServidorVazio());
             }
