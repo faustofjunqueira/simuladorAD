@@ -1,7 +1,5 @@
 package simulador;
 
-import simulador.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,9 +31,9 @@ public class Simulacao {
             for(int i = 0; i < nLoops; i++){
                 Simulador simulador;
                 if(classe2 != null){
-                    simulador = new Simulador(tempoFinal, classe1, classe2);
+                    simulador = getSimulador(tempoFinal, classe1, classe2);
                 }else{
-                    simulador = new Simulador(tempoFinal, classe1);
+                    simulador = getSimulador(tempoFinal, classe1);
                 }
                 MetricaDeInteresse metricaDeInteresse = simulador.iniciarSimulacao();
                 MediasPessoasNaFilaColhetadas.add( Metricas.Little(classe1.getLambda() + classe2.getLambda(), metricaDeInteresse.getMediaTempoDeEspera()));
@@ -50,6 +48,14 @@ public class Simulacao {
         return media;
     }
 
+    protected Simulador getSimulador(Double tempoFinal, Classe classe1) {
+        return new Simulador(tempoFinal, classe1);
+    }
+
+    protected Simulador getSimulador(Double tempoFinal, Classe classe1, Classe classe2) {
+        return new Simulador(tempoFinal, classe1, classe2);
+    }
+
     public Double executarTempoPessoasNaFila(Double lambda){
         classe1.setLambda(lambda);
         List<Double> mediasTempoDePessoasNaFila = new ArrayList<>(nLoops);
@@ -58,7 +64,7 @@ public class Simulacao {
         Double media;
         do{
             for(int i = 0; i < nLoops; i++){
-                Simulador simulador = new Simulador(tempoFinal, classe1, classe2);
+                Simulador simulador = getSimulador(tempoFinal, classe1, classe2);
                 MetricaDeInteresse metricaDeInteresse = simulador.iniciarSimulacao();
                 mediasTempoDePessoasNaFila.add(metricaDeInteresse.getMediaTempoDeEspera());
             }
@@ -66,6 +72,51 @@ public class Simulacao {
             media = Metricas.Media(mediasTempoDePessoasNaFila);
             intervaloInferior = Metricas.IntervaloConfiancaInferior(mediasTempoDePessoasNaFila);
             intervaloSuperior = Metricas.IntervaloConfiancaSuperior(mediasTempoDePessoasNaFila);
+
+        }while( media < intervaloInferior || media > intervaloSuperior );
+
+        return media;
+    }
+
+    public Double executarFracaoTempoServidorVazio(Double lambda){
+        classe1.setLambda(lambda);
+        List<Double> mediasFracaoServidorVazio = new ArrayList<>(nLoops);
+        Double intervaloInferior;
+        Double intervaloSuperior;
+        Double media;
+        do{
+            for(int i = 0; i < nLoops; i++){
+                Simulador simulador = getSimulador(tempoFinal, classe1, classe2);
+                MetricaDeInteresse metricaDeInteresse = simulador.iniciarSimulacao();
+                mediasFracaoServidorVazio.add(metricaDeInteresse.getFracaoDeTempoServidorVazio());
+            }
+
+            media = Metricas.Media(mediasFracaoServidorVazio);
+            intervaloInferior = Metricas.IntervaloConfiancaInferior(mediasFracaoServidorVazio);
+            intervaloSuperior = Metricas.IntervaloConfiancaSuperior(mediasFracaoServidorVazio);
+
+        }while( media < intervaloInferior || media > intervaloSuperior );
+
+        return media;
+    }
+
+
+    public Double executarFracaoChegadasServidorVazio(Double lambda){
+        classe1.setLambda(lambda);
+        List<Double> mediasFracaoChegadasServidorVazio = new ArrayList<>(nLoops);
+        Double intervaloInferior;
+        Double intervaloSuperior;
+        Double media;
+        do{
+            for(int i = 0; i < nLoops; i++){
+                Simulador simulador = getSimulador(tempoFinal, classe1, classe2);
+                MetricaDeInteresse metricaDeInteresse = simulador.iniciarSimulacao();
+                mediasFracaoChegadasServidorVazio.add(metricaDeInteresse.getFracaoDeChegadasServidorVazio());
+            }
+
+            media = Metricas.Media(mediasFracaoChegadasServidorVazio);
+            intervaloInferior = Metricas.IntervaloConfiancaInferior(mediasFracaoChegadasServidorVazio);
+            intervaloSuperior = Metricas.IntervaloConfiancaSuperior(mediasFracaoChegadasServidorVazio);
 
         }while( media < intervaloInferior || media > intervaloSuperior );
 
@@ -81,6 +132,16 @@ public class Simulacao {
         System.out.println("Media de tempo das pessoas na fila");
         for(Double lambda = inicio; lambda <= _final; lambda += incremento){
             System.out.println(executarTempoPessoasNaFila(lambda));
+        }
+
+        System.out.println("Fracao em que o servidor fica vazio");
+        for(Double lambda = inicio; lambda <= _final; lambda += incremento){
+            System.out.println(executarFracaoTempoServidorVazio(lambda));
+        }
+
+        System.out.println("Fracao de chegadas em que servidor se encontra vazio");
+        for(Double lambda = inicio; lambda <= _final; lambda += incremento){
+            System.out.println(executarFracaoChegadasServidorVazio(lambda));
         }
     }
 }
