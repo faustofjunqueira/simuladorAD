@@ -1,7 +1,5 @@
 package simulador;
 
-import simulador.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +59,7 @@ public class Simulacao {
         Double media;
         do{
             for(int i = 0; i < nLoops; i++){
-                Simulador simulador = new Simulador(tempoFinal, classe1, classe2);
+                Simulador simulador = gerarSimulador(tempoFinal, classe1, classe2);
                 MetricaDeInteresse metricaDeInteresse = simulador.iniciarSimulacao();
                 mediasTempoDePessoasNaFila.add(metricaDeInteresse.getMediaTempoDeEspera());
             }
@@ -83,7 +81,7 @@ public class Simulacao {
         Double media;
         do{
             for(int i = 0; i < nLoops; i++){
-                Simulador simulador = getSimulador(tempoFinal, classe1, classe2);
+                Simulador simulador = gerarSimulador(tempoFinal, classe1, classe2);
                 MetricaDeInteresse metricaDeInteresse = simulador.iniciarSimulacao();
                 mediasFracaoServidorVazio.add(metricaDeInteresse.getFracaoDeTempoServidorVazio());
             }
@@ -106,7 +104,7 @@ public class Simulacao {
         Double media;
         do{
             for(int i = 0; i < nLoops; i++){
-                Simulador simulador = getSimulador(tempoFinal, classe1, classe2);
+                Simulador simulador = gerarSimulador(tempoFinal, classe1, classe2);
                 MetricaDeInteresse metricaDeInteresse = simulador.iniciarSimulacao();
                 mediasFracaoChegadasServidorVazio.add(metricaDeInteresse.getFracaoDeChegadasServidorVazio());
             }
