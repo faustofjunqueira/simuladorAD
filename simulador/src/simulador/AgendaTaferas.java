@@ -15,6 +15,13 @@ public class AgendaTaferas {
         this.tarefas = new ArrayList<>(10);
     }
 
+    public void removerTarefa(Tarefa tarefa){
+        for(int i = 0; i < tarefas.size(); i++){
+            if(tarefas.get(i).hashCode() == tarefa.hashCode()){
+                tarefas.remove(i);
+            }
+        }
+    }
 
     public void adicionarTarefa(Tarefa tarefa){
         tarefas.add(tarefa);

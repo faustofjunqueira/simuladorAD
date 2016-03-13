@@ -24,6 +24,14 @@ public class Simulacao {
         }
     }
 
+    protected Simulador getSimulador(Double tempoFinal, Classe classe1) {
+        return new Simulador(tempoFinal, classe1);
+    }
+
+    protected Simulador getSimulador(Double tempoFinal, Classe classe1, Classe classe2) {
+        return new Simulador(tempoFinal, classe1, classe2);
+    }
+
     public Double executarPessoasNaFila(Double lambda){
         classe1.setLambda(lambda);
         List<Double> MediasPessoasNaFilaColhetadas = new ArrayList<>(nLoops);
@@ -32,12 +40,7 @@ public class Simulacao {
         Double media;
         do{
             for(int i = 0; i < nLoops; i++){
-                Simulador simulador;
-                if(classe2 != null){
-                    simulador = getSimulador(tempoFinal, classe1, classe2);
-                }else{
-                    simulador = getSimulador(tempoFinal, classe1);
-                }
+                Simulador simulador = getSimulador(tempoFinal,classe1,classe2);
                 MetricaDeInteresse metricaDeInteresse = simulador.iniciarSimulacao();
                 MediasPessoasNaFilaColhetadas.add( Metricas.Little(classe1.getLambda() + classe2.getLambda(), metricaDeInteresse.getMediaTempoDeEspera()));
             }
@@ -49,14 +52,6 @@ public class Simulacao {
         }while( media < intervaloInferior || media > intervaloSuperior );
 
         return media;
-    }
-
-    protected Simulador getSimulador(Double tempoFinal, Classe classe1) {
-        return new Simulador(tempoFinal, classe1);
-    }
-
-    protected Simulador getSimulador(Double tempoFinal, Classe classe1, Classe classe2) {
-        return new Simulador(tempoFinal, classe1, classe2);
     }
 
     public Double executarTempoPessoasNaFila(Double lambda){

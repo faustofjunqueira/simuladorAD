@@ -1,4 +1,4 @@
-package exercicio7;
+package exercicios.exercicio7;
 
 import simulador.Classe;
 import simulador.Random;

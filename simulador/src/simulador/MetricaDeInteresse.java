@@ -39,7 +39,11 @@ public class MetricaDeInteresse {
     }
 
     public void adicionaClienteProcessado(Cliente cliente){
-        getClientesProcessados().add(cliente);
+        if(cliente != null){
+            getClientesProcessados().add(cliente);
+        }else{
+            Integer i = 0;
+        }
     }
 
     public Double getFracaoDeTempoServidorVazio() {

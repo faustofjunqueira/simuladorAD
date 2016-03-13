@@ -6,6 +6,7 @@ package simulador;
 public class SimuladorPreemptivo extends Simulador {
 
     private ClientePreemptivo clienteNoServidor;
+    private Tarefa tarefaDeProcessamento;
 
     public SimuladorPreemptivo(Double tempoFinal, Classe classeObrigatoria, Classe ...classes) {
         super(tempoFinal,classeObrigatoria,classes);
@@ -13,36 +14,59 @@ public class SimuladorPreemptivo extends Simulador {
 
     @Override
     protected void LiberaServidorEBuscaNovoCliente(Double horarioDeEntradaNoServidor, Cliente cliente){
-        clienteNoServidor = null;
-        setServidorOcupado(false);
         metricaDeInteresse.adicionaClienteProcessado(cliente);
-        if(fila.tamanho() > 0){
-            Cliente novoCliente = fila.remover();
-            novoCliente.setTempoSaida(horarioDeEntradaNoServidor);
-            ProcessarCliente(novoCliente);
+        //tira o cliente do servidor
+        clienteNoServidor = null;
+        //se tiver gnt na fila
+        if(fila.tamanho() > 0) {
+            //tira da fila
+            ClientePreemptivo novoCliente = (ClientePreemptivo) fila.remover();
+            //Marca a saida do cliente
+            novoCliente.marcaSaida(horarioDeEntradaNoServidor);
+            //Processa o cliente
+            ProcessarCliente(novoCliente, horarioDeEntradaNoServidor);
         }
     }
 
-    @Override
-    protected void ProcessarCliente(Cliente cliente){
-        ClientePreemptivo clientePreemptivo = (ClientePreemptivo) cliente;
-
-        // com preempçao: tira o cliente, salva o tempo que ainda resta e coloca o novo no servidor
-        if(clienteNoServidor != null){
-            //Remove cliente do servidor
-            clienteNoServidor.marcaSaida(temporizador.getTempoAtual());
-            //marca o horario como saida do cara
-            //joga ele pra fila
-        }
-        //Colocar tempo pendente
-        temporizador.registrarTarefaPorAtraso(clientePreemptivo.getTempoPendente(), (tempo) -> LiberaServidorEBuscaNovoCliente(tempo, cliente));
+    protected void ProcessarCliente(Cliente cliente, Double horarioAtual){
+        //guarda o cliente no servidor
+        clienteNoServidor = (ClientePreemptivo) cliente;
+        //marca o tempo de saida da fila
+        clienteNoServidor.marcaSaida(horarioAtual);
+        //cria o evento para terminar o processamento do cliente, baseado do tempo pendente para terminado
+        //guarda o evento
+        //dispara o evento
+        tarefaDeProcessamento =
+                temporizador.registrarTarefaPorAtraso(
+                        clienteNoServidor.getTempoPendente() , (tempo) -> LiberaServidorEBuscaNovoCliente(tempo, cliente));
     }
 
     @Override
     protected void InsereClienteNaFila(Double horarioDeEntrada, Classe classe){
-        Cliente cliente = new ClientePreemptivo(classe, horarioDeEntrada);
-        // Com preempção: coloca direto no servidor
-        ProcessarCliente(cliente);
+        //marca o horario de entrada
+        ClientePreemptivo novoCliente = new ClientePreemptivo(classe, horarioDeEntrada);
+        //Se tem cliente no Servidor
+        if(clienteNoServidor != null) {
+            //Se a prioridade for menor do cliente que esta no servidor
+            if(novoCliente.getClasse().getPrioridade() <= clienteNoServidor.getClasse().getPrioridade()){
+                //Cancela o evento de processamento desse cliente
+                temporizador.cancelarTarefa(tarefaDeProcessamento);
+                //Marca o tempo restante que falta para terminar o processamento
+                clienteNoServidor.atualizaTempoPendente(horarioDeEntrada); // i.e horarioDeEntrada corresponde ao horario atual
+                //Marca a nova entrada do cliente
+                clienteNoServidor.marcaEntrada(horarioDeEntrada);
+                //Colocar como proximo na fila
+                fila.adicionar(clienteNoServidor, true);
+                //Processa o Cliente que chegou
+                ProcessarCliente(novoCliente,horarioDeEntrada);
+            }else{
+                fila.adicionar(novoCliente,false);
+            }
+        }else{
+            //Processa o cliente que chegou
+            ProcessarCliente(novoCliente,horarioDeEntrada);
+        }
+
         // Usa-se Random.Exponecial Sempre pois a entrada eh sempre Memoryless
         temporizador.registrarTarefaPorAtraso(Random.Exponencial(classe.getLambda()), (tempo) -> InsereClienteNaFila(tempo, classe));
     }

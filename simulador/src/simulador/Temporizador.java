@@ -17,6 +17,10 @@ public class Temporizador {
         this.agenda = new AgendaTaferas();
     }
 
+    public void cancelarTarefa(Tarefa tarefa){
+        agenda.removerTarefa(tarefa);
+    }
+
     public Double getTempoAtual() {
         return tempoAtual;
     }
@@ -33,9 +37,10 @@ public class Temporizador {
         this.tempoFinal += tempoFinal;
     }
 
-    public void registrarTarefaPorAtraso(Double atraso, Consumer<Double> funcao){
+    public Tarefa registrarTarefaPorAtraso(Double atraso, Consumer<Double> funcao){
         Tarefa tarefa = new Tarefa(atraso + tempoAtual,funcao);
         agenda.adicionarTarefa(tarefa);
+        return tarefa;
     }
 
     public void play(){
