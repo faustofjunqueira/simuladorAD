@@ -21,7 +21,6 @@ public class Fila{
     }
 
     public void adicionar(Cliente cliente, Boolean preemptivo){
-        //TODO: fazer o preemptivo
         if(preemptivo){
             getFilas().get(cliente.getClasse().getPrioridade()).add(0,cliente);
         }else{
