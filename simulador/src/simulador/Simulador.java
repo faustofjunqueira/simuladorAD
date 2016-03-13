@@ -62,12 +62,14 @@ public class Simulador {
     }
 
     private void ProcessarCliente(Cliente cliente){
+        // com preempçao: tira o cliente, salva o tempo que ainda resta e coloca o novo no servidor
         setServidorOcupado(true);
         temporizador.registrarTarefaPorAtraso(cliente.getClasse().getRandom(), (tempo) -> LiberaServidorEBuscaNovoCliente(tempo, cliente));
     }
 
     private void InsereClienteNaFila(Double horarioDeEntrada, Classe classe){
         Cliente cliente = new Cliente(classe, horarioDeEntrada);
+        // Com preempção: coloca direto no servidor
         if(!servidorOcupado){
             cliente.setTempoSaida(horarioDeEntrada);
             ProcessarCliente(cliente);

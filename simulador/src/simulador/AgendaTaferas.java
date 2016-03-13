@@ -1,5 +1,7 @@
 package simulador;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -7,24 +9,22 @@ import java.util.TreeSet;
  * Created by fausto on 3/11/16.
  */
 public class AgendaTaferas {
-    private SortedSet<Tarefa> tarefas;
+    private List<Tarefa> tarefas;
 
     public AgendaTaferas() {
-        this.tarefas = new TreeSet<>(new TarefaComparator());
+        this.tarefas = new ArrayList<>(10);
     }
 
-    public SortedSet<Tarefa> getTarefas() {
-        return tarefas;
-    }
 
     public void adicionarTarefa(Tarefa tarefa){
-        getTarefas().add(tarefa);
+        tarefas.add(tarefa);
     }
 
     public Tarefa proximaTarefa(){
-        if(getTarefas().size() > 0){
-            Tarefa tarefa = getTarefas().first();
-            getTarefas().remove(tarefa);
+        if(tarefas.size() > 0){
+            tarefas.sort(new TarefaComparator());
+            Tarefa tarefa = tarefas.get(0);
+            tarefas.remove(0);
             return tarefa;
         }else{
             return null;
