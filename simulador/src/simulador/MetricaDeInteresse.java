@@ -1,6 +1,7 @@
 package simulador;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,5 +62,15 @@ public class MetricaDeInteresse {
         this.fracaoDeChegadasServidorVazio = fracaoDeChegadasServidorVazio;
     }
 
-
+    public List<Double> getTempoEntreSaidas() {
+        List<Double> tempoDeSaidas = new ArrayList<>();
+        List<Double> tempoEntreSaidas = new ArrayList<>();
+        for (Cliente cliente : clientesProcessados)
+            tempoDeSaidas.add(cliente.getTempoSaida());
+        tempoDeSaidas.sort(Comparator.<Double>naturalOrder());
+        for (int i = 0; i < tempoDeSaidas.size() - 1; i++) {
+            tempoEntreSaidas.add(tempoDeSaidas.get(i + 1) - tempoDeSaidas.get(i));
+        }
+        return tempoEntreSaidas;
+    }
 }

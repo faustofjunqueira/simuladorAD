@@ -1,6 +1,9 @@
 package simulador;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -129,6 +132,7 @@ public class Simulacao {
             System.out.println(executarTempoPessoasNaFila(lambda));
         }
 
+        // Questão 7
         System.out.println("Fracao em que o servidor fica vazio");
         for(Double lambda = inicio; lambda <= _final; lambda += incremento){
             System.out.println(executarFracaoTempoServidorVazio(lambda));
@@ -138,5 +142,24 @@ public class Simulacao {
         for(Double lambda = inicio; lambda <= _final; lambda += incremento){
             System.out.println(executarFracaoChegadasServidorVazio(lambda));
         }
+    }
+
+    //Questão 6
+    public void executarTempoEntreSaidasDeCliente(String filename) {
+        System.out.println();
+        Simulador simulador = getSimulador(tempoFinal, classe1, classe2);
+        MetricaDeInteresse metricaDeInteresse = simulador.iniciarSimulacao();
+        List<Double> tempoEntreSaidas = metricaDeInteresse.getTempoEntreSaidas();
+        tempoEntreSaidas.sort(Comparator.<Double>naturalOrder());
+        PrintWriter out = null;
+        try {
+            out = new PrintWriter(filename);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        for (int i = 0; i < tempoEntreSaidas.size(); i++) {
+            out.println(tempoEntreSaidas.get(i) + " " + (i + 1) / (double) tempoEntreSaidas.size());
+        }
+        out.close();
     }
 }
