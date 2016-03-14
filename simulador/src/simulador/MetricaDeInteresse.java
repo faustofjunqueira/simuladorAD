@@ -73,4 +73,9 @@ public class MetricaDeInteresse {
         }
         return tempoEntreSaidas;
     }
+
+    public Double getTrabalhoPendente() {
+        List<Double> listaTrabalhoPendente =  clientesProcessados.stream().map(cliente -> cliente.getTrabalhoPendente()).collect(Collectors.toList());
+        return Metricas.Media(listaTrabalhoPendente);
+    }
 }

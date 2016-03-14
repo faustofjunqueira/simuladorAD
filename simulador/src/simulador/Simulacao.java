@@ -122,7 +122,7 @@ public class Simulacao {
     }
 
     public void executar(double inicio, double _final, double incremento){
-        System.out.println("Media de Pessoas da Fila");
+        /*System.out.println("Media de Pessoas da Fila");
         for(Double lambda = inicio; lambda <= _final; lambda += incremento){
             System.out.println(executarPessoasNaFila(lambda));
         }
@@ -141,6 +141,12 @@ public class Simulacao {
         System.out.println("Fracao de chegadas em que servidor se encontra vazio");
         for(Double lambda = inicio; lambda <= _final; lambda += incremento){
             System.out.println(executarFracaoChegadasServidorVazio(lambda));
+        }*/
+
+        //Questão 8
+        System.out.println("Trabalho Pendente");
+        for(Double lambda = inicio; lambda <= _final; lambda += incremento){
+            System.out.println(executarTrabalhoPendente(lambda));
         }
     }
 
@@ -161,5 +167,28 @@ public class Simulacao {
             out.println(tempoEntreSaidas.get(i) + " " + (i + 1) / (double) tempoEntreSaidas.size());
         }
         out.close();
+    }
+
+    //Questão 8
+    public Double executarTrabalhoPendente(double lambda) {
+        classe1.setLambda(lambda);
+        List<Double> mediasTrabalhoPendente = new ArrayList<>(nLoops);
+        Double intervaloInferior;
+        Double intervaloSuperior;
+        Double media;
+        do{
+            for(int i = 0; i < nLoops; i++){
+                Simulador simulador = getSimulador(tempoFinal,classe1,classe2);
+                MetricaDeInteresse metricaDeInteresse = simulador.iniciarSimulacao();
+                mediasTrabalhoPendente.add(metricaDeInteresse.getTrabalhoPendente());
+            }
+
+            media = Metricas.Media(mediasTrabalhoPendente);
+            intervaloInferior = Metricas.IntervaloConfiancaInferior(mediasTrabalhoPendente);
+            intervaloSuperior = Metricas.IntervaloConfiancaSuperior(mediasTrabalhoPendente);
+
+        }while( media < intervaloInferior || media > intervaloSuperior );
+
+        return media;
     }
 }

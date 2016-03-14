@@ -7,6 +7,7 @@ public class Cliente {
     private Classe classe;
     private double tempoEntrada;
     private double tempoSaida;
+    private double trabalhoPendente;
 
     public Cliente(Classe classe, double tempoEntrada) {
         this.classe = classe;
@@ -32,5 +33,13 @@ public class Cliente {
 
     public double getDeltaTempo(){
         return tempoSaida - tempoEntrada;
+    }
+
+    public void setTrabalhoPendente(double trabalhoPendente) {
+        this.trabalhoPendente = trabalhoPendente;
+    }
+
+    public double getTrabalhoPendente() {
+        return trabalhoPendente;
     }
 }

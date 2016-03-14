@@ -78,14 +78,27 @@ public class Simulador {
         // Com preempção: coloca direto no servidor
         if(!servidorOcupado){
             cliente.setTempoSaida(horarioDeEntrada);
+            cliente.setTrabalhoPendente(getTrabalhoPendenteAtual(0));
             metricaDeInteresse.setFracaoDeChegadasServidorVazio(++nClientesComServidorVazio/(double)++nClientesChegadas);
             ProcessarCliente(cliente);
         }else{
+            cliente.setTrabalhoPendente(getTrabalhoPendenteAtual(0)); //TODO: XResidual do cliente que está ocupando o servidor
             metricaDeInteresse.setFracaoDeChegadasServidorVazio(nClientesComServidorVazio/(double)++nClientesChegadas);
             fila.adicionar(cliente,false);
         }
         // Usa-se Random.Exponecial Sempre pois a entrada eh sempre Memoryless
         temporizador.registrarTarefaPorAtraso(getClasseRandomLambda(classe), (tempo) -> InsereClienteNaFila(tempo, classe));
+    }
+
+    private Double getTrabalhoPendenteAtual(double xResidual) {
+        //Nq1*E[X1] + Nq2*E[X2] + Xr
+        Double total = 0.;
+        for(List<Cliente> f : fila.getFilas()) {
+            for(Cliente cliente : f)
+                total += 1/cliente.getClasse().getMi();
+        }
+
+        return total + xResidual;
     }
 
     public MetricaDeInteresse iniciarSimulacao(){
