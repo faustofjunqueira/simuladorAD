@@ -10,11 +10,12 @@ public class SimulacaoPreemptiva extends Simulacao{
     }
 
     @Override
-    protected Simulador gerarSimulador(Double tempoFinal, Classe classe1, Classe classe2){
-        if(classe2 != null){
-            return new SimuladorPreemptivo(tempoFinal, classe1, classe2);
-        }else{
-            return new SimuladorPreemptivo(tempoFinal, classe1);
-        }
+    protected Simulador getSimulador(Double tempoFinal, Classe classe1) {
+        return new SimuladorPreemptivo(tempoFinal, classe1);
+    }
+
+    @Override
+    protected Simulador getSimulador(Double tempoFinal, Classe classe1, Classe classe2) {
+        return new SimuladorPreemptivo(tempoFinal, classe1, classe2);
     }
 }

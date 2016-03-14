@@ -48,7 +48,7 @@ public class SimuladorPreemptivo extends Simulador {
         //Se tem cliente no Servidor
         if(clienteNoServidor != null) {
             //Se a prioridade for menor do cliente que esta no servidor
-            if(novoCliente.getClasse().getPrioridade() <= clienteNoServidor.getClasse().getPrioridade()){
+            if(novoCliente.getClasse().getPrioridade() < clienteNoServidor.getClasse().getPrioridade()){
                 //Cancela o evento de processamento desse cliente
                 temporizador.cancelarTarefa(tarefaDeProcessamento);
                 //Marca o tempo restante que falta para terminar o processamento
