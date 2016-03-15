@@ -7,12 +7,14 @@ public class Cliente {
     private Classe classe;
     private double tempoEntrada;
     private double tempoSaida;
-    private double trabalhoPendente;
+    protected double tempoDeServico;
+    protected double trabalhoPendente;
 
     public Cliente(Classe classe, double tempoEntrada) {
         this.classe = classe;
         this.tempoEntrada = tempoEntrada;
         this.tempoSaida = tempoSaida;
+        this.tempoDeServico = this.classe.getRandom();
     }
 
     public Classe getClasse() {
@@ -39,7 +41,11 @@ public class Cliente {
         this.trabalhoPendente = trabalhoPendente;
     }
 
-    public double getTrabalhoPendente() {
+    protected double getTrabalhoPendente() {
         return trabalhoPendente;
+    }
+
+    public double getTempoDeServico() {
+        return tempoDeServico;
     }
 }

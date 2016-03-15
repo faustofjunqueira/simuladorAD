@@ -170,7 +170,7 @@ public class Simulacao {
     }
 
     //Questão 8
-    public Double executarTrabalhoPendente(double lambda) {
+    protected Double executarTrabalhoPendente(double lambda) {
         classe1.setLambda(lambda);
         List<Double> mediasTrabalhoPendente = new ArrayList<>(nLoops);
         Double intervaloInferior;
