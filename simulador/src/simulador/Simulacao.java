@@ -143,10 +143,19 @@ public class Simulacao {
             System.out.println(executarFracaoChegadasServidorVazio(lambda));
         }*/
 
-        //Questão 8
+        //Questão 8 Parte 2
+        /*
         System.out.println("Trabalho Pendente");
         for(Double lambda = inicio; lambda <= _final; lambda += incremento){
             System.out.println(executarTrabalhoPendente(lambda));
+        }*/
+
+        //Questão 8 Parte 2
+        System.out.println("Pessoas na Fila 1");
+        for(Double lambda = inicio; lambda <= _final; lambda += incremento){
+            Double[] medias = executarMediaPessoasFilas(lambda);
+            System.out.println("Classe 1: " + (medias[0]));
+            System.out.println("Classe 2: " + (medias[1]));
         }
     }
 
@@ -190,5 +199,32 @@ public class Simulacao {
         }while( media < intervaloInferior || media > intervaloSuperior );
 
         return media;
+    }
+
+    protected Double[] executarMediaPessoasFilas(double lambda) {
+        classe1.setLambda(lambda);
+        List<Double> mediasPessoasFila1 = new ArrayList<>(nLoops);
+        List<Double> mediasPessoasFila2 = new ArrayList<>(nLoops);
+        Double intervaloInferior1, intervaloInferior2;
+        Double intervaloSuperior1, intervaloSuperior2;
+        Double media1, media2;
+        do{
+            for(int i = 0; i < nLoops; i++){
+                Simulador simulador = getSimulador(tempoFinal,classe1,classe2);
+                MetricaDeInteresse metricaDeInteresse = simulador.iniciarSimulacao();
+                mediasPessoasFila1.add(metricaDeInteresse.getPessoasFila()[0]);
+                mediasPessoasFila2.add(metricaDeInteresse.getPessoasFila()[1]);
+            }
+
+            media1 = Metricas.Media(mediasPessoasFila1);
+            media2 = Metricas.Media(mediasPessoasFila2);
+            intervaloInferior1 = Metricas.IntervaloConfiancaInferior(mediasPessoasFila1);
+            intervaloSuperior1 = Metricas.IntervaloConfiancaSuperior(mediasPessoasFila1);
+            intervaloInferior2 = Metricas.IntervaloConfiancaInferior(mediasPessoasFila2);
+            intervaloSuperior2 = Metricas.IntervaloConfiancaSuperior(mediasPessoasFila2);
+
+        }while(( media1 < intervaloInferior1 || media1 > intervaloSuperior1 ) && ( media2 < intervaloInferior2 || media2 > intervaloSuperior2 ));
+
+        return new Double[]{media1, media2};
     }
 }
