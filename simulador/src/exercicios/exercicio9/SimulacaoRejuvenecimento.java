@@ -25,10 +25,10 @@ public class SimulacaoRejuvenecimento {
         System.out.println(String.format("3.1) Seja p a probabilidade de falhar, logo p(analítico) = %f", XEstrela(lambda,rho) ));
         System.out.println("-------------------------------------------");
         System.out.println(String.format("3.2) Numero de vezes que o sistema reinicia, até falhar, por simulacao = %f", metrica.getnRejuvenecimentoAteFalhar()));
-        System.out.println(String.format("3.2) Numero de vezes que o sistema reinicia, até falhar, analítico %f",1/(metrica.getProbabilidadeDeFalhar())));
+        System.out.println(String.format("3.2) Numero de vezes que o sistema reinicia, até falhar, analítico %f", 1/XEstrela(lambda,rho)));
         System.out.println("-------------------------------------------");
-        System.out.println(String.format("3.3) Tempo de rejuvenecimento desde a última falha, simulacao = %f", metrica.getTempoEntreFalhas()));
-        System.out.println(String.format("3.3) Tempo de rejuvenecimento desde a última falha, analítico = %f",0.0));
+        System.out.println(String.format("3.3) Tempo do último rejuvenescimento   até a falha, simulacao = %f", metrica.getTempoUltimoRejuvenescimento()));
+        System.out.println(String.format("3.3) Tempo do último rejuvenescimento   até a falha, analítico = %f", (1/(lambda + rho))));
 
     }
 }

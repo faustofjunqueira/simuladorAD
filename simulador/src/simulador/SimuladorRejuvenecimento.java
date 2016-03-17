@@ -9,6 +9,7 @@ public class SimuladorRejuvenecimento {
     protected Temporizador temporizador;
     protected Integer nRejuvenecimentosAteFalhar = 0;
     protected Double horarioUltimaFalha = 0.0;
+	protected Double horarioUltimoRejuvenescimento = 0.0;
 
     protected Tarefa rejuvenecimentoTarefa, falhaTarefa;
 
@@ -34,8 +35,9 @@ public class SimuladorRejuvenecimento {
         metricas.incrementaNFalhas();
         metricas.incrementaIteracoes();
         metricas.adicionaNRejuvenecimentosAteFalhar(nRejuvenecimentosAteFalhar+1); // +1 é a vez que falha!
-        metricas.adicionaTempoEntreFalhas(horario - horarioUltimaFalha);
+        metricas.adicionaTempoDesdeUltimoRejuvenescimento(horario - horarioUltimoRejuvenescimento);
         horarioUltimaFalha = horario;
+        horarioUltimoRejuvenescimento = horario;
         nRejuvenecimentosAteFalhar = 0;
         criaTarefas();
     }
@@ -44,6 +46,7 @@ public class SimuladorRejuvenecimento {
         temporizador.cancelarTarefa(falhaTarefa);
         metricas.incrementaIteracoes();
         nRejuvenecimentosAteFalhar++;
+		horarioUltimoRejuvenescimento = horario;
         criaTarefas();
     }
 

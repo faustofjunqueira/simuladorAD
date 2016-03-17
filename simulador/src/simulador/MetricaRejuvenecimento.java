@@ -10,7 +10,7 @@ public class MetricaRejuvenecimento {
     private Integer iteracoes = 0;
     private Integer nFalhas = 0;
     private List<Integer> nRejuvenecimentoAteFalhar = new ArrayList<>();
-    private List<Double> tempoEntreFalhas = new ArrayList<>();
+    private List<Double> tempoUltimoRejuvenescimento = new ArrayList<>();
 
     public void incrementaIteracoes(){
         iteracoes++;
@@ -24,8 +24,8 @@ public class MetricaRejuvenecimento {
         return 1.0 * nFalhas/ iteracoes;
     }
 
-    public void adicionaTempoEntreFalhas(Double tempoEntreFalhas){
-        this.tempoEntreFalhas.add(tempoEntreFalhas);
+    public void adicionaTempoDesdeUltimoRejuvenescimento(Double tempoUltimoRejuvenescimento){
+        this.tempoUltimoRejuvenescimento.add(tempoUltimoRejuvenescimento);
     }
 
     public void adicionaNRejuvenecimentosAteFalhar(Integer nRejuvenecimentosAteFalhar){
@@ -36,7 +36,7 @@ public class MetricaRejuvenecimento {
         return 1.0 * nRejuvenecimentoAteFalhar.stream().mapToInt(x -> x).sum() / nRejuvenecimentoAteFalhar.size();
     }
 
-    public Double getTempoEntreFalhas() {
-        return tempoEntreFalhas.stream().mapToDouble(x -> x).sum() / nRejuvenecimentoAteFalhar.size();
+    public Double getTempoUltimoRejuvenescimento() {
+        return tempoUltimoRejuvenescimento.stream().mapToDouble(x -> x).sum() / nRejuvenecimentoAteFalhar.size();
     }
 }
