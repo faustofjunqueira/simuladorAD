@@ -9,8 +9,8 @@ public class CenarioIII {
 
     public static void main(String [] args) {
         Simulacao simulacao = new Simulacao(
-                new Classe( 0, 1,0,() -> Random.Deterministico(1)),
-                new Classe(.2,.5,0,() -> Random.Deterministico(.5))
+            new Classe( 0, 1,0,() -> Random.Deterministico(1)),
+            new Classe(.2,.5,0,() -> Random.Deterministico(.5))
         );
 
         simulacao.executar(.05, .61, .05);

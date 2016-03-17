@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.StringJoiner;
 
 /**
  * Created by fausto on 3/12/16.
@@ -14,6 +15,25 @@ public class Simulacao {
     private final Double tempoFinal = 100000.;
     private Classe classe1;
     private Classe classe2;
+
+    private static void PrintSimulacaoResultado(String titulo, List<SimulacaoResultado> resultado){
+        StringJoiner media = new StringJoiner("\t");
+        StringJoiner intervaloDeConfiacaInferior = new StringJoiner("\t");
+        StringJoiner intervaloDeConfiacaSuperior = new StringJoiner("\t");
+
+        for(SimulacaoResultado r : resultado){
+            media.add(r.media.toString());
+            intervaloDeConfiacaInferior.add(r.intConfInferior.toString());
+            intervaloDeConfiacaSuperior.add(r.intConfSuperior.toString());
+        }
+        System.out.println(titulo);
+        //System.out.println("Media");
+        System.out.println(media.toString().replace('.',','));
+        //System.out.println("Inferior");
+        System.out.println(intervaloDeConfiacaInferior.toString().replace('.',','));
+        //System.out.println("Superior");
+        System.out.println(intervaloDeConfiacaSuperior.toString().replace('.',','));
+    }
 
     public Simulacao(Classe classe1, Classe classe2) {
         this.classe1 = classe1;
@@ -32,7 +52,7 @@ public class Simulacao {
         return new Simulador(tempoFinal, classe1, classe2);
     }
 
-    public Double executarPessoasNaFila(Double lambda){
+    public SimulacaoResultado executarPessoasNaFila(Double lambda){
         classe1.setLambda(lambda);
         List<Double> MediasPessoasNaFilaColhetadas = new ArrayList<>(nLoops);
         Double intervaloInferior;
@@ -51,10 +71,10 @@ public class Simulacao {
 
         }while( media < intervaloInferior || media > intervaloSuperior );
 
-        return media;
+        return new SimulacaoResultado(media,intervaloInferior,intervaloSuperior);
     }
 
-    public Double executarTempoPessoasNaFila(Double lambda){
+    public SimulacaoResultado executarTempoPessoasNaFila(Double lambda){
         classe1.setLambda(lambda);
         List<Double> mediasTempoDePessoasNaFila = new ArrayList<>(nLoops);
         Double intervaloInferior;
@@ -73,10 +93,10 @@ public class Simulacao {
 
         }while( media < intervaloInferior || media > intervaloSuperior );
 
-        return media;
+        return new SimulacaoResultado(media,intervaloInferior,intervaloSuperior);
     }
 
-    public Double executarFracaoTempoServidorVazio(Double lambda){
+    public SimulacaoResultado executarFracaoTempoServidorVazio(Double lambda){
         classe1.setLambda(lambda);
         List<Double> mediasFracaoServidorVazio = new ArrayList<>(nLoops);
         Double intervaloInferior;
@@ -95,11 +115,10 @@ public class Simulacao {
 
         }while( media < intervaloInferior || media > intervaloSuperior );
 
-        return media;
+        return new SimulacaoResultado(media,intervaloInferior,intervaloSuperior);
     }
 
-
-    public Double executarFracaoChegadasServidorVazio(Double lambda){
+    public SimulacaoResultado executarFracaoChegadasServidorVazio(Double lambda){
         classe1.setLambda(lambda);
         List<Double> mediasFracaoChegadasServidorVazio = new ArrayList<>(nLoops);
         Double intervaloInferior;
@@ -118,30 +137,36 @@ public class Simulacao {
 
         }while( media < intervaloInferior || media > intervaloSuperior );
 
-        return media;
+        return new SimulacaoResultado(media,intervaloInferior,intervaloSuperior);
     }
 
     public void executar(double inicio, double _final, double incremento){
-        System.out.println("Media de Pessoas da Fila");
+        List<SimulacaoResultado> mediaPessoa = new ArrayList<>(20);
+        List<SimulacaoResultado> mediaTempo = new ArrayList<>(20);
+        List<SimulacaoResultado> mediaTempoVazio = new ArrayList<>(20);
+        List<SimulacaoResultado> mediaChegadaVazio = new ArrayList<>(20);
+
         for(Double lambda = inicio; lambda <= _final; lambda += incremento){
-            System.out.println(executarPessoasNaFila(lambda));
+            mediaPessoa.add(executarPessoasNaFila(lambda));
         }
 
-        System.out.println("Media de tempo das pessoas na fila");
         for(Double lambda = inicio; lambda <= _final; lambda += incremento){
-            System.out.println(executarTempoPessoasNaFila(lambda));
+            mediaTempo.add(executarTempoPessoasNaFila(lambda));
         }
 
         // Questão 7
-        System.out.println("Fracao em que o servidor fica vazio");
-        for(Double lambda = inicio; lambda <= _final; lambda += incremento){
-            System.out.println(executarFracaoTempoServidorVazio(lambda));
+        /*for(Double lambda = inicio; lambda <= _final; lambda += incremento){
+            mediaTempoVazio.add(executarFracaoTempoServidorVazio(lambda));
         }
 
-        System.out.println("Fracao de chegadas em que servidor se encontra vazio");
         for(Double lambda = inicio; lambda <= _final; lambda += incremento){
-            System.out.println(executarFracaoChegadasServidorVazio(lambda));
-        }
+            mediaChegadaVazio.add(executarFracaoChegadasServidorVazio(lambda));
+        }*/
+
+        PrintSimulacaoResultado("Media de Pessoas da Fila", mediaPessoa);
+        PrintSimulacaoResultado("Media de tempo das pessoas na fila", mediaTempo);
+        //PrintSimulacaoResultado("Fracao em que o servidor fica vazio", mediaTempoVazio);
+        //PrintSimulacaoResultado("Fracao de chegadas em que servidor se encontra vazio", mediaChegadaVazio);
     }
 
     //Questão 6
