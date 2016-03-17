@@ -73,4 +73,31 @@ public class MetricaDeInteresse {
         }
         return tempoEntreSaidas;
     }
+
+    public Double getTrabalhoPendente() {
+        List<Double> listaTrabalhoPendente =  clientesProcessados.stream().map(cliente -> cliente.getTrabalhoPendente()).collect(Collectors.toList());
+        return Metricas.Media(listaTrabalhoPendente);
+    }
+
+    public Double[] getPessoasFila() {
+        Double[] pessoasNaFila = new Double[2];
+        Classe classe1 = clientesProcessados.get(0).getClasse();
+        Classe classe2 = null;
+        List<Double> listaDeltaTempo1 = new ArrayList<>();
+        List<Double> listaDeltaTempo2 = new ArrayList<>();
+        for (Cliente cliente : clientesProcessados) {
+            if (cliente.getClasse().equals(classe1))
+                listaDeltaTempo1.add(cliente.getDeltaTempo());
+            else {
+                if (classe2 == null)
+                    classe2 = cliente.getClasse();
+                listaDeltaTempo2.add(cliente.getDeltaTempo());
+            }
+        }
+
+        pessoasNaFila[0] = Metricas.Little(classe1.getLambda(), Metricas.Media(listaDeltaTempo1));
+        pessoasNaFila[1] = Metricas.Little(classe2.getLambda(), Metricas.Media(listaDeltaTempo2));
+
+        return pessoasNaFila;
+    }
 }

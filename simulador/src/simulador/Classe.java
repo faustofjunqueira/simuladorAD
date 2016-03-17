@@ -33,5 +33,9 @@ public class Classe {
     public void setLambda(double lambda) {
         this.lambda = lambda;
     }
+
+    public double getMi() {
+        return mi;
+    }
 }
 //temposaida, tempoentrada, delta

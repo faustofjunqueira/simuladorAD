@@ -16,6 +16,7 @@ public class Simulador {
     protected Double tempoVazioTotal = 0.;
     protected Integer nClientesChegadas = 0;
     protected Integer nClientesComServidorVazio = 0;
+    protected Cliente clienteAtual;
 
     public Simulador(Double tempoFinal, Classe classeObrigatoria, Classe ...classes) {
         temporizador = new Temporizador(tempoFinal);
@@ -69,8 +70,9 @@ public class Simulador {
     protected void ProcessarCliente(Cliente cliente){
         // com preempçao: tira o cliente, salva o tempo que ainda resta e coloca o novo no servidor
         setServidorOcupado(true);
+        clienteAtual = cliente;
         setTempoVazioTotal(tempoVazioTotal + temporizador.getTempoAtual() - tempoVazio);
-        temporizador.registrarTarefaPorAtraso(cliente.getClasse().getRandom(), (tempo) -> LiberaServidorEBuscaNovoCliente(tempo, cliente));
+        temporizador.registrarTarefaPorAtraso(cliente.getTempoDeServico(), (tempo) -> LiberaServidorEBuscaNovoCliente(tempo, cliente));
     }
 
     protected void InsereClienteNaFila(Double horarioDeEntrada, Classe classe){
@@ -78,14 +80,27 @@ public class Simulador {
         // Com preempção: coloca direto no servidor
         if(!servidorOcupado){
             cliente.setTempoSaida(horarioDeEntrada);
+            cliente.setTrabalhoPendente(getTrabalhoPendenteAtual(0));
             metricaDeInteresse.setFracaoDeChegadasServidorVazio(++nClientesComServidorVazio/(double)++nClientesChegadas);
             ProcessarCliente(cliente);
         }else{
+            cliente.setTrabalhoPendente(getTrabalhoPendenteAtual(clienteAtual.getTempoDeServico())); //TODO: XResidual do cliente que está ocupando o servidor
             metricaDeInteresse.setFracaoDeChegadasServidorVazio(nClientesComServidorVazio/(double)++nClientesChegadas);
             fila.adicionar(cliente,false);
         }
         // Usa-se Random.Exponecial Sempre pois a entrada eh sempre Memoryless
         temporizador.registrarTarefaPorAtraso(getClasseRandomLambda(classe), (tempo) -> InsereClienteNaFila(tempo, classe));
+    }
+
+    protected Double getTrabalhoPendenteAtual(double xResidual) {
+        //Nq1*E[X1] + Nq2*E[X2] + Xr
+        Double total = 0.;
+        for(List<Cliente> f : fila.getFilas()) {
+            for(Cliente cliente : f)
+                total += 1/cliente.getClasse().getMi();
+        }
+
+        return total + xResidual;
     }
 
     public MetricaDeInteresse iniciarSimulacao(){

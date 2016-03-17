@@ -49,6 +49,7 @@ public class SimuladorPreemptivo extends Simulador {
         if(clienteNoServidor != null) {
             //Se a prioridade for menor do cliente que esta no servidor
             if(novoCliente.getClasse().getPrioridade() < clienteNoServidor.getClasse().getPrioridade()){
+                novoCliente.setTrabalhoPendente(getTrabalhoPendenteAtual(0));
                 //Cancela o evento de processamento desse cliente
                 temporizador.cancelarTarefa(tarefaDeProcessamento);
                 //Marca o tempo restante que falta para terminar o processamento
@@ -60,10 +61,12 @@ public class SimuladorPreemptivo extends Simulador {
                 //Processa o Cliente que chegou
                 ProcessarCliente(novoCliente,horarioDeEntrada);
             }else{
+                novoCliente.setTrabalhoPendente(getTrabalhoPendenteAtual(novoCliente.getTempoPendente()));
                 fila.adicionar(novoCliente,false);
             }
         }else{
             //Processa o cliente que chegou
+            novoCliente.setTrabalhoPendente(getTrabalhoPendenteAtual(0));
             ProcessarCliente(novoCliente,horarioDeEntrada);
         }
 
