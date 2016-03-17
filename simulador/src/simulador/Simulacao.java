@@ -141,15 +141,11 @@ public class Simulacao {
     }
 
     public void executar(double inicio, double _final, double incremento){
-<<<<<<< HEAD
         List<SimulacaoResultado> mediaPessoa = new ArrayList<>(20);
         List<SimulacaoResultado> mediaTempo = new ArrayList<>(20);
         List<SimulacaoResultado> mediaTempoVazio = new ArrayList<>(20);
         List<SimulacaoResultado> mediaChegadaVazio = new ArrayList<>(20);
 
-=======
-        /*System.out.println("Media de Pessoas da Fila");
->>>>>>> origin/master
         for(Double lambda = inicio; lambda <= _final; lambda += incremento){
             mediaPessoa.add(executarPessoasNaFila(lambda));
         }
@@ -164,7 +160,6 @@ public class Simulacao {
         }
 
         for(Double lambda = inicio; lambda <= _final; lambda += incremento){
-<<<<<<< HEAD
             mediaChegadaVazio.add(executarFracaoChegadasServidorVazio(lambda));
         }*/
 
@@ -172,9 +167,6 @@ public class Simulacao {
         PrintSimulacaoResultado("Media de tempo das pessoas na fila", mediaTempo);
         //PrintSimulacaoResultado("Fracao em que o servidor fica vazio", mediaTempoVazio);
         //PrintSimulacaoResultado("Fracao de chegadas em que servidor se encontra vazio", mediaChegadaVazio);
-=======
-            System.out.println(executarFracaoChegadasServidorVazio(lambda));
-        }*/
 
         //Questão 8 Parte 2
         /*
@@ -190,7 +182,6 @@ public class Simulacao {
             System.out.println("Classe 1: " + (medias[0]));
             System.out.println("Classe 2: " + (medias[1]));
         }
->>>>>>> origin/master
     }
 
     //Questão 6

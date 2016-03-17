@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="edb017f5-dde4-4e46-815c-3a1bddf2d55d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/simulador/src/exercicios/exercicio8/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulador/src/simulador/Classe.java" afterPath="$PROJECT_DIR$/simulador/src/simulador/Classe.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulador/src/simulador/Cliente.java" afterPath="$PROJECT_DIR$/simulador/src/simulador/Cliente.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulador/src/simulador/MetricaDeInteresse.java" afterPath="$PROJECT_DIR$/simulador/src/simulador/MetricaDeInteresse.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulador/src/simulador/Simulacao.java" afterPath="$PROJECT_DIR$/simulador/src/simulador/Simulacao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulador/src/simulador/Simulador.java" afterPath="$PROJECT_DIR$/simulador/src/simulador/Simulador.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simulador/src/simulador/SimuladorPreemptivo.java" afterPath="$PROJECT_DIR$/simulador/src/simulador/SimuladorPreemptivo.java" />
     </list>
     <ignored path="simulador.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,16 +44,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimulacaoRejuvenecimento.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SimulacaoRejuvenecimento.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simulador/src/exercicios/exercicio9/SimulacaoRejuvenecimento.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2372449">
+            <state vertical-scroll-proportion="0.0">
               <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#245#246#0" expanded="true" />
                 <element signature="e#275#276#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Simulacao.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/simulador/src/simulador/Simulacao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.015625">
+              <caret line="192" column="48" selection-start-line="192" selection-start-column="42" selection-end-line="192" selection-end-column="48" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -145,12 +147,12 @@
         <option value="$PROJECT_DIR$/simulador/src/exercicios/exercicio5/CenarioI.java" />
         <option value="$PROJECT_DIR$/simulador/src/simulador/MetricaSimulacao.java" />
         <option value="$PROJECT_DIR$/simulador/src/simulador/SimulacaoResultado.java" />
-        <option value="$PROJECT_DIR$/simulador/src/simulador/Simulacao.java" />
         <option value="$PROJECT_DIR$/simulador/src/exercicios/exercicio3/CenarioIII.java" />
         <option value="$PROJECT_DIR$/simulador/src/exercicios/exercicio5/CenarioIV.java" />
         <option value="$PROJECT_DIR$/simulador/src/simulador/MetricaRejuvenecimento.java" />
         <option value="$PROJECT_DIR$/simulador/src/simulador/SimuladorRejuvenecimento.java" />
         <option value="$PROJECT_DIR$/simulador/src/exercicios/exercicio9/SimulacaoRejuvenecimento.java" />
+        <option value="$PROJECT_DIR$/simulador/src/simulador/Simulacao.java" />
       </list>
     </option>
   </component>
@@ -897,7 +899,7 @@
       <workItem from="1457825621117" duration="68000" />
       <workItem from="1457825889320" duration="36129000" />
       <workItem from="1457993170262" duration="4558000" />
-      <workItem from="1458172520915" duration="8208000" />
+      <workItem from="1458172520915" duration="8423000" />
     </task>
     <task id="LOCAL-00001" summary="Simulador funcionando sem colheita de metricas">
       <created>1457758523169</created>
@@ -975,7 +977,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77153000" />
+    <option name="totallyTimeSpent" value="77368000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -992,12 +994,12 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.328" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4432" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4432" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
@@ -1018,14 +1020,14 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287879" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.328" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3296" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4432" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1348,6 +1350,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1463,14 +1466,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simulador/src/simulador/Simulacao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24120604">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/simulador/src/simulador/Simulador.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36180905">
@@ -1528,13 +1523,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/simulador/src/exercicios/exercicio9/SimulacaoRejuvenecimento.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2372449">
+        <state vertical-scroll-proportion="0.0">
           <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#245#246#0" expanded="true" />
             <element signature="e#275#276#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulador/src/simulador/Simulacao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.015625">
+          <caret line="192" column="48" selection-start-line="192" selection-start-column="42" selection-end-line="192" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
